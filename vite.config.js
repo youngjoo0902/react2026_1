@@ -4,5 +4,5 @@ import react from '@vitejs/plugin-react'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: '/react2026_1/'
+  base: '/react2026_1/'//배포할 때 경로 설정 (레파지토리 이름 넣기)
 })
