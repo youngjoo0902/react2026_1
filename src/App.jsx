@@ -4,7 +4,7 @@ import { use, useState } from 'react'
 import './App.css'
 
 function App() {
-  let [blogList, setBlogList] = useState(["제목1", "제목2", "제목3"]);
+  let [blogList, setBlogList] = useState(["제목1111", "제목2", "제목3"]);
   let [blogSummary, setblogSummary] = useState(["내용1", "내용2", "내용3"]);
   let [thumsbup, setThumsbup] = useState([0, 0, 0]);
   let [modal, setModal] = useState(false);
