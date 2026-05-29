@@ -246,7 +246,7 @@ function App() {
               </tr>
               <tr>
                 <th>할일</th>
-                <td><input type="text" placeholder="할일을 입력하세요" value={title} onChange={(e) => setTitle(e.target.value)} /></td>
+                <td><input type="text" placeholder="할일을 입력하세요" value={title} onChange={(e) => e.target.value.length > 0 && setTitle(e.target.value)} /></td>
               </tr>
               <tr>
                 <th>내용</th>
