@@ -85,11 +85,15 @@ function App() {
     getPosts();
   }, []);
 
- useEffect(() => {
-  if (editingIndex !== null) {
-    inputRefs.current[editingIndex]?.focus();
-  }
-}, [editingIndex]);
+  useEffect(() => {
+    if (editingIndex !== null) {
+      inputRefs.current[editingIndex]?.focus();
+    }
+  }, [editingIndex]);
+
+  useEffect(() => {
+    createTodayTodoIfNeeded();
+  }, []);
 
   //읽기
   async function getPosts() {
@@ -115,6 +119,7 @@ function App() {
         checked: false
       }
     ]);
+    setAddTodoOpen(false);
 
     if (error) {
       console.log(error);
@@ -147,6 +152,29 @@ function App() {
     if (error) {
       console.log(error);
     }
+  }
+
+  let todoListTemplate = ['약 4종 먹기', '스쿼트 10회 x 5세트', '푸쉬업 10회 x 5세트', '덤벨프레스 10회 x 5세트', '샤워', '약 2종 먹기'];
+  //매일 양식 자동추가
+  async function createTodayTodoIfNeeded() {
+    const today = new Date();
+    const dateId = today.getFullYear() * 10000 + (today.getMonth() + 1) * 100 + today.getDate();
+    const { data } = await supabase.from('todolist').select('id').eq('date_id', dateId).limit(1);
+    if (data.length > 0) {
+      return;
+    }
+    const newTodos = [];
+    todoListTemplate.map((title) => 
+      newTodos.push({
+        date_id: dateId,
+        title: title,
+        summary: '',
+        checked: false
+    }));
+
+    await supabase.from('todolist').insert(newTodos);
+
+    getPosts();
   }
 
   return (
@@ -198,17 +226,9 @@ function App() {
         😢해야할거<br />
         - <del>DB 데이터 불러왔으니, 가공해서 뿌리기</del><br />
         - <del>인풋에 포커스 넣고, 수정하고 포커스 빼서 타이틀 바꾸기</del><br />
-        - 매일 같은 양식 자동 업데이트<br />
+        - <del>매일 같은 양식 자동 업데이트</del><br />
         - <del>특정 날짜에 할일 추가, 삭제</del><br />
         - <del>완료된 할 일 클래스 추가</del><br />
-        <div className="real_data">
-          <strong>실제데이터</strong>
-          {lists?.[selectNumber]?.todo.map((todo, i) => (
-            <div key={i}>
-              {todo.title}
-            </div>
-          ))}
-        </div>
       </div>
       {
         addTodoOpen && 
