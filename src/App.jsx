@@ -180,7 +180,7 @@ function App() {
   return (
     <div className="app">
       <div className={menuOpen ? "nav on" : "nav"}>
-        <h4>마이웨이 투두리스트</h4>
+        <h4>아무나 수정가능한 마이웨이 투두리스트</h4>
         <button className="menu" onClick={() => setMenuOpen(!menuOpen)}><span></span></button>
         <div className="menu_list">
           <p className="date">Date</p>
