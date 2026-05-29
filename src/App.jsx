@@ -106,10 +106,7 @@ function App() {
   //추가
   async function addPost() {
 
-    const dateId =
-      selectedDate.getFullYear() * 10000 +
-      (selectedDate.getMonth() + 1) * 100 +
-      selectedDate.getDate();
+    const dateId = selectedDate.getFullYear() * 10000 + (selectedDate.getMonth() + 1) * 100 + selectedDate.getDate();
 
     const { error } = await supabase.from('todolist').insert([
       {
@@ -210,7 +207,7 @@ function App() {
                       <FontAwesomeIcon icon={faTrashCan} onClick={(e) => {e.preventDefault(); deletePost(todo.id)}} />
                     </p>
                     <p className="editor">
-                      <input ref={el => inputRefs.current[i] = el} type="text" placeholder={todo.title} onBlur={(e) => changeTitleClose(i, e.target.value)} />
+                      <input ref={el => inputRefs.current[i] = el} type="text" placeholder={todo.title} onBlur={(e) => {e.target.value.length > 0 ? changeTitleClose(i, e.target.value) : changeTitleClose(i, todo.title)}} />
                     </p>
                   </div>
                 </label>
