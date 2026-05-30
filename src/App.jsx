@@ -20,6 +20,7 @@ function App() {
   let [selectedDate, setSelectedDate] = useState(new Date());
   let [title, setTitle] = useState('');
   let [summary, setSummary] = useState('');
+  let todoListTemplate = ['약 5종 먹기', '턱걸이 5회 x 3세트', '스쿼트 10회 x 3세트', '푸쉬업 10회 x 3세트', '덤벨프레스 10회 x 3세트', '단백질 파우더 마시기', '공부 30분', '샤워', '약 2종 먹기'];
 
   //메뉴 변경
   function changeMenu(index){
@@ -40,6 +41,13 @@ function App() {
   }
   function changeTitleOpen(index){/*인풋으로 포커스 보내야 함*/
     setEditingIndex(index);
+  }
+  function changingTitle(index, newTitle){
+    const newLists = [...lists];
+    newLists[selectNumber].todo[index].title = newTitle;
+    setLists(newLists);
+
+    //setEditingIndex(null);
   }
   function changeTitleClose(index, newTitle){/* 인풋에서 포커스 빼고, 타이틀을 갱신해줘야 함 */
     // 화면 데이터 수정
@@ -151,7 +159,6 @@ function App() {
     }
   }
 
-  let todoListTemplate = ['약 4종 먹기', '스쿼트 10회 x 5세트', '푸쉬업 10회 x 5세트', '덤벨프레스 10회 x 5세트', '샤워', '약 2종 먹기'];
   //매일 양식 자동추가
   async function createTodayTodoIfNeeded() {
     const today = new Date();
@@ -207,7 +214,8 @@ function App() {
                       <FontAwesomeIcon icon={faTrashCan} onClick={(e) => {e.preventDefault(); deletePost(todo.id)}} />
                     </p>
                     <p className="editor">
-                      <input ref={el => inputRefs.current[i] = el} type="text" placeholder={todo.title} onBlur={(e) => {e.target.value.length > 0 ? changeTitleClose(i, e.target.value) : changeTitleClose(i, todo.title)}} />
+                      {/* <input ref={el => inputRefs.current[i] = el} type="text" placeholder={todo.title} value={todo.title} onBlur={(e) => {e.target.value.length > 0 ? changeTitleClose(i, e.target.value) : changeTitleClose(i, todo.title)}} /> */}
+                      <input ref={el => inputRefs.current[i] = el} type="text" placeholder={todo.title} value={todo.title} onChange={(e) => {changingTitle(i, e.target.value)}} onBlur={(e) => {e.target.value.length > 0 ? changeTitleClose(i, e.target.value) : changeTitleClose(i, todo.title)}} />
                     </p>
                   </div>
                 </label>
@@ -218,15 +226,7 @@ function App() {
         </ul>
       </div>
       <p className="todoAdd"><button onClick={setAddTodoOpen}>추가</button></p>
-      <br /><br /><br /><br />
-      <div className="data">
-        😢해야할거<br />
-        - <del>DB 데이터 불러왔으니, 가공해서 뿌리기</del><br />
-        - <del>인풋에 포커스 넣고, 수정하고 포커스 빼서 타이틀 바꾸기</del><br />
-        - <del>매일 같은 양식 자동 업데이트</del><br />
-        - <del>특정 날짜에 할일 추가, 삭제</del><br />
-        - <del>완료된 할 일 클래스 추가</del><br />
-      </div>
+      
       {
         addTodoOpen && 
         <div className="addTodoList">
