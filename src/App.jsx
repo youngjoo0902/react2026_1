@@ -20,7 +20,11 @@ function App() {
   let [selectedDate, setSelectedDate] = useState(new Date());
   let [title, setTitle] = useState('');
   let [summary, setSummary] = useState('');
-  let todoListTemplate = ['약 5종 먹기', '턱걸이 5회 x 3세트', '스쿼트 10회 x 3세트', '푸쉬업 10회 x 3세트', '덤벨프레스 10회 x 3세트', '단백질 파우더 마시기', '공부 30분', '샤워', '약 2종 먹기'];
+  let todoListTemplate = [
+    '약 5종 먹기', '턱걸이 5회 x 3세트', '스쿼트 10회 x 3세트', '푸쉬업 10회 x 3세트',
+    '덤벨프레스 10회 x 3세트', '단백질 파우더 마시기', '공부 30분',
+    '샤워', '미녹시딜 바르기', '약 2종 먹기'
+  ];
 
   //메뉴 변경
   function changeMenu(index){
