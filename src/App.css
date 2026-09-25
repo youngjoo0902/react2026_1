@@ -55,7 +55,7 @@ input:focus, button:focus, select:focus, textarea:focus	{outline:none;}
 .nav .menu span::after{position:absolute; content:""; top:calc(100% - 20px); left:30px; width:calc(100% - 40px); height:2px; background:#fff; transform:translate(-50%, -50%); transition:all 0.5s;}
 .nav .menu_list{position:fixed; top:0; right:0; width:0; height:100vh; background:#000; transition:width 0.5s; overflow:hidden; z-index:1;}
 .nav .menu_list p{width:200px; height:60px; display:flex; flex-direction:row; justify-content:center; align-items:center; border-bottom:1px solid #333;}
-.nav .menu_list menu{width:200px; height:calc(100vh - 40px); overflow-y:auto;}
+.nav .menu_list menu{width:200px; height:calc(100dvh - 80px); overflow-y:auto;}
 .nav .menu_list menu li{border-bottom:1px solid #222; padding:10px 0;}
 .nav.on .menu_list{width:200px;}
 .nav.on .menu::before {opacity:0;}
