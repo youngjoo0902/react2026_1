@@ -6,7 +6,7 @@ function Home() {
     const navigate = useNavigate();
     return (
         <div className="app">
-            <div class="login">
+            <div className="login">
                 <h1><a href="/react2026_1/">영주님의 투두리스트</a></h1>
                 <dl>
                     <dt>닉네임</dt>
