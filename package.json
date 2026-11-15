@@ -2,7 +2,7 @@
   "name": "myway",
   "private": true,
   "version": "0.0.0",
-  "homepage": "https://youngjoo0902.github.io/myway/",
+  "homepage": "https://youngjoo0902.github.io/react2026_1/",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -17,7 +17,8 @@
     "@supabase/supabase-js": "^2.106.1",
     "react": "^19.2.6",
     "react-datepicker": "^9.1.0",
-    "react-dom": "^19.2.6"
+    "react-dom": "^19.2.6",
+    "react-router-dom": "^7.18.5"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
